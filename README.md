@@ -1,4 +1,5 @@
 # rarity-bot
+
 Play Rarity automatically, just for you.
 
 ## How to use it
@@ -23,3 +24,11 @@ Play Rarity automatically, just for you.
    node summon.js
    ```
 7. Have fun :)
+
+## Donate
+
+You can donate any amount of `ETH` or stablecoins to the following ENS address:
+
+```
+shep.eth
+```
