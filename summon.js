@@ -4,13 +4,13 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const conf = {
-  wssNode: 'wss://wsapi.fantom.network',
+  rpc: 'https://rpc.ftm.tools',
   rarityContractAddress: '0xce761d788df608bd21bdd59d6f4b54b2e27f25bb',
   privateKey: process.env.WALLET_PRIVATE_KEY,
   summonCountPerClass: process.env.SUMMON_COUNT,
 }
 
-const provider = new ethers.providers.WebSocketProvider(conf.wssNode)
+const provider = new ethers.providers.JsonRpcProvider(conf.rpc)
 const wallet = new ethers.Wallet(conf.privateKey, provider)
 const account = wallet.connect(provider)
 
@@ -50,12 +50,6 @@ const summon = async () => {
       console.log('==============================')
     }
   }
-
-  return tokenIds
 }
 
-const run = async () => {
-  const tokenIds = await summon()
-}
-
-await run()
+await summon()
