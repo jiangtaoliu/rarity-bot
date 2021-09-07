@@ -27,7 +27,7 @@ const summon = async () => {
 
   for (let i = 0; i < summonCountPerClass; i++) {
     for (const c of classes) {
-      console.log(`Summoning class ${c} for the ${i + 1} times...`)
+      console.log(`Summoning class ${c} for the ${i + 1} time...`)
 
       const tx = await rarity.summon(c, {
         gasPrice,
@@ -48,6 +48,7 @@ const summon = async () => {
       console.log('==============================')
       console.log('Summoned Token IDs:')
       console.log(tokenIds.join(','))
+      console.log('==============================')
     }
   }
 
