@@ -29,17 +29,13 @@ const summon = async () => {
     for (const c of classes) {
       console.log(`Summoning class ${c} for the ${i + 1} time...`)
 
-      console.log(1)
       const tx = await rarity.summon(c, {
         gasPrice,
         gasLimit: 200000,
         nonce: null,
       })
-
-      console.log(2)
       const receipt = await tx.wait()
-      1
-      console.log(3)
+
       console.log(
         `Transaction receipt : https://ftmscan.com/tx/${receipt.logs[1].transactionHash}`
       )
