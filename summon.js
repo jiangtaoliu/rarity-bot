@@ -22,6 +22,7 @@ const summonCountPerClass = parseInt(conf.summonCountPerClass, 10)
 
 const summon = async () => {
   const tokenIds = []
+  let nonce = await provider.getTransactionCount(wallet.address)
 
   for (let i = 0; i < summonCountPerClass; i++) {
     for (const c of classes) {
@@ -30,8 +31,8 @@ const summon = async () => {
       const gasPrice = await provider.getGasPrice()
       const tx = await rarity.summon(c, {
         gasPrice,
+        nonce,
         gasLimit: 210000,
-        nonce: null,
       })
       const receipt = await tx.wait()
 
@@ -41,6 +42,8 @@ const summon = async () => {
 
       const tokenId = parseInt(receipt.logs[0].topics[3], 16)
       tokenIds.push(tokenId)
+
+      nonce++
 
       console.log(`Hero #${tokenId} is summoned!`)
 
