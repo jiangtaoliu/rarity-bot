@@ -20,8 +20,6 @@ const rarity = new ethers.Contract(conf.rarityContractAddress, abi, account)
 const classes = [1, 2, 3, 4, 5, 7, 8, 9, 10, 11]
 const summonCountPerClass = parseInt(conf.summonCountPerClass, 10)
 
-const gasPrice = ethers.utils.parseUnits('70', 'gwei')
-
 const summon = async () => {
   const tokenIds = []
 
@@ -29,9 +27,10 @@ const summon = async () => {
     for (const c of classes) {
       console.log(`Summoning class ${c} for the ${i + 1} time...`)
 
+      const gasPrice = await provider.getGasPrice()
       const tx = await rarity.summon(c, {
         gasPrice,
-        gasLimit: 200000,
+        gasLimit: 210000,
         nonce: null,
       })
       const receipt = await tx.wait()
